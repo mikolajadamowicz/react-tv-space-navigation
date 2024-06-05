@@ -4,7 +4,7 @@
     "packages/**"
   ],
   "private": true,
-  "packageManager": "yarn@3.5.1",
+  "packageManager": "yarn@4.2.2",
   "devDependencies": {
     "@babel/core": "^7.22.5",
     "@babel/preset-env": "^7.22.5",

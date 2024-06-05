@@ -11,6 +11,11 @@
     "prebuild": "EXPO_TV=1 expo prebuild --clean"
   },
   "dependencies": {
+    "@react-native-tvos/config-tv": "^0.0.4",
+    "@react-navigation/bottom-tabs": "^6.5.11",
+    "react-dom": "18.2.0",
+    "react-native-modal": "^13.0.1",
+    "react-native-web": "^0.19.6",
     "@bam.tech/react-native-keyevent-expo-config-plugin": "^1.0.52",
     "@emotion/native": "^11.11.0",
     "@emotion/react": "^11.11.3",
