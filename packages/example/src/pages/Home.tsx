@@ -16,7 +16,7 @@ export const Home = () => {
   return (
     <Page>
       <TitleContainer>
-        <Title variant="title">Hoppix</Title>
+        <Title variant="title">Lighthouse Growth TV</Title>
       </TitleContainer>
       <DefaultFocus>
         <SpatialNavigationScrollView
