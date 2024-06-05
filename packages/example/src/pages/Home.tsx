@@ -27,7 +27,7 @@ export const Home = () => {
           descendingArrowContainerStyle={styles.topArrowContainer}
         >
           <Box padding="$10">
-            <ProgramListWithTitle title="Popular" />
+            <ProgramListWithTitle title="Popular (Large list 1000 elements)" />
             <Spacer gap="$6" />
             <ProgramListWithTitle title="Classics" />
             <Spacer gap="$6" />
