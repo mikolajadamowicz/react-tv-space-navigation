@@ -11,11 +11,6 @@ const images = {
   1: require('../assets/rabbitLarge1.png'),
   2: require('../assets/rabbitLarge2.png'),
   3: require('../assets/rabbitLarge3.png'),
-  4: require('../assets/rabbitLarge4.png'),
-  5: require('../assets/rabbitLarge5.png'),
-  6: require('../assets/rabbitLarge6.png'),
-  7: require('../assets/rabbitLarge7.png'),
-  8: require('../assets/rabbitLarge8.png'),
 };
 
 interface HeaderProps {
@@ -25,7 +20,7 @@ interface HeaderProps {
 }
 
 export const Header = ({ title, description, verticalSize }: HeaderProps) => {
-  const imageSource = images[Math.floor(Math.random() * 9)];
+  const imageSource = images[Math.floor(Math.random() * 4)];
   return (
     <SpatialNavigationNode orientation="horizontal">
       <Container height={verticalSize}>
