@@ -31,7 +31,7 @@ export const Home = () => {
             <Spacer gap="$6" />
             <ProgramListWithTitle title="Classics" />
             <Spacer gap="$6" />
-            <ProgramListWithTitle title="Watch again" />
+            <ProgramListWithTitle initialIndex={6} title="Watch again" />
             <Spacer gap="$6" />
             <ProgramListWithTitle title="You may also like..." />
             <Spacer gap="$6" />

@@ -26,11 +26,13 @@ export const ProgramList = ({
   containerStyle,
   listRef,
   data,
+  initialIndex,
 }: {
   orientation?: 'vertical' | 'horizontal';
   containerStyle?: object;
   listRef: MutableRefObject<SpatialNavigationVirtualizedListRef>;
   data?: ProgramInfo[];
+  initialIndex?: number;
 }) => {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
@@ -64,6 +66,7 @@ export const ProgramList = ({
             descendingArrowContainerStyle={styles.leftArrowContainer}
             ascendingArrow={isActive ? <RightArrow /> : null}
             ascendingArrowContainerStyle={styles.rightArrowContainer}
+            initialIndex={initialIndex}
             ref={listRef}
           />
         </Container>
@@ -75,9 +78,11 @@ export const ProgramList = ({
 export const ProgramsRow = ({
   containerStyle,
   listRef,
+  initialIndex,
 }: {
   containerStyle?: object;
   listRef: MutableRefObject<SpatialNavigationVirtualizedListRef>;
+  initialIndex?: number;
 }) => {
   const theme = useTheme();
   return (
@@ -86,6 +91,7 @@ export const ProgramsRow = ({
         ...containerStyle,
         height: theme.sizes.program.portrait.height + ROW_PADDING,
       }}
+      initialIndex={initialIndex}
       listRef={listRef}
     />
   );

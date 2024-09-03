@@ -1,4 +1,12 @@
-import { ForwardedRef, useCallback, useImperativeHandle, useMemo, useRef, useState } from 'react';
+import {
+  ForwardedRef,
+  useCallback,
+  useEffect,
+  useImperativeHandle,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 import { VirtualizedListProps } from './VirtualizedList';
 
 import {
@@ -52,10 +60,10 @@ const ItemWrapperWithScrollContext = typedMemo(
 );
 ItemWrapperWithScrollContext.displayName = 'ItemWrapperWithScrollContext';
 
-export type SpatialNavigationVirtualizedListWithScrollProps<T> = Omit<
-  SpatialNavigationVirtualizedListWithVirtualNodesProps<T>,
-  'currentlyFocusedItemIndex'
->;
+export type SpatialNavigationVirtualizedListWithScrollProps<T> = {
+  isActive: boolean;
+  initialIndex?: number;
+} & Omit<SpatialNavigationVirtualizedListWithVirtualNodesProps<T>, 'currentlyFocusedItemIndex'>;
 
 export type PointerScrollProps = {
   descendingArrow?: React.ReactElement;
@@ -179,9 +187,12 @@ export const SpatialNavigationVirtualizedListWithScroll = typedMemo(
         ascendingArrow: ascendingArrow,
         descendingArrowContainerStyle,
         ascendingArrowContainerStyle,
+        isActive,
+        initialIndex = 0,
         scrollInterval = 100,
       } = props;
-      const [currentlyFocusedItemIndex, setCurrentlyFocusedItemIndex] = useState(0);
+
+      const [currentlyFocusedItemIndex, setCurrentlyFocusedItemIndex] = useState(initialIndex);
       const spatialNavigator = useSpatialNavigator();
       const { deviceType, deviceTypeRef, descendingArrowProps, ascendingArrowProps, idRef } =
         useRemotePointerVirtualizedListScrollProps({
@@ -189,6 +200,17 @@ export const SpatialNavigationVirtualizedListWithScroll = typedMemo(
           scrollInterval,
           data,
         });
+
+      const grabFocus = spatialNavigator.grabFocus;
+
+      useEffect(() => {
+        if (idRef.current && isActive && initialIndex !== undefined) {
+          const newId = idRef.current.getNthVirtualNodeID(initialIndex);
+          if (newId) {
+            grabFocus(newId);
+          }
+        }
+      }, [isActive, initialIndex, grabFocus, idRef]);
 
       const setCurrentlyFocusedItemIndexCallback = useCallback(
         (index: number) => {

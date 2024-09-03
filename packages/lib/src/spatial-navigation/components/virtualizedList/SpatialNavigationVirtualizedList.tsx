@@ -17,7 +17,8 @@ import { SpatialNavigationVirtualizedListRef } from '../../types/SpatialNavigati
 export const SpatialNavigationVirtualizedList = typedMemo(
   typedForwardRef(
     <T,>(
-      props: SpatialNavigationVirtualizedListWithScrollProps<T> & PointerScrollProps,
+      props: Omit<SpatialNavigationVirtualizedListWithScrollProps<T>, 'isActive'> &
+        PointerScrollProps,
       ref: ForwardedRef<SpatialNavigationVirtualizedListRef>,
     ) => {
       return (
@@ -25,7 +26,13 @@ export const SpatialNavigationVirtualizedList = typedMemo(
           alignInGrid={props.isGrid ?? false}
           orientation={props.orientation ?? 'horizontal'}
         >
-          <SpatialNavigationVirtualizedListWithScroll<T> {...props} ref={ref} />
+          {({ isActive }) => (
+            <SpatialNavigationVirtualizedListWithScroll<T>
+              {...props}
+              isActive={isActive}
+              ref={ref}
+            />
+          )}
         </SpatialNavigationNode>
       );
     },
